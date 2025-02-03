@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const cardVariants = cva(
-  "rounded-lg bg-white",
+  "rounded-lg",
   {
     variants: {
       variant: {
@@ -11,30 +11,24 @@ const cardVariants = cva(
         ghost: "border-transparent",
         outline: "border-slate-200 border",
       },
-      size: {
-        default: "p-6",
-        sm: "p-4",
-        lg: "p-8",
-      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
     },
   }
 )
 
 export interface CardProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {
+  VariantProps<typeof cardVariants> {
   withHoverEffect?: boolean;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, size, withHoverEffect = false, ...props }, ref) => {
+  ({ className, variant, withHoverEffect = false, ...props }, ref) => {
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
       if (!withHoverEffect) return;
-      
+
       const { currentTarget: target } = e;
       const rect = target.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -47,7 +41,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          cardVariants({ variant, size, className }),
+          cardVariants({ variant, className }),
           withHoverEffect && "card"
         )}
         onMouseMove={handleMouseMove}

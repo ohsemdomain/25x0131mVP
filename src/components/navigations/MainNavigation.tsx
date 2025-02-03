@@ -38,7 +38,7 @@ export const MainNavigation = ({ items = navigationItems }: NavigationMenuProps)
           to={item.path}
           key={item.id}
           className={`relative transition-colors hover:text-primary ${
-            activeItem.id === item.id ? "text-primary py-2" : "py-2 text-slate-400"
+            activeItem.id === item.id ? "text-base text-primary py-2" : "text-base py-2 text-slate-400"
           }`}
           onMouseEnter={() => setHoveredItem(item)}
           onMouseLeave={() => setHoveredItem(null)}
@@ -55,13 +55,13 @@ export const MainNavigation = ({ items = navigationItems }: NavigationMenuProps)
           {activeItem.id === item.id && (
             <motion.div
               layoutId="active"
-              className="absolute inset-x-0 -bottom-1.5 h-[1px] bg-primary"
+              className="absolute inset-x-0 -bottom-1 h-[1px] bg-primary"
             />
           )}
           {hoveredItem?.id === item.id && (
             <motion.div
               layoutId="hover"
-              className="absolute inset-x-0 -bottom-1.5 h-[1px] bg-primary"
+              className="absolute inset-x-0 -bottom-1 h-[1px] bg-primary"
             />
           )}
         </Link>
